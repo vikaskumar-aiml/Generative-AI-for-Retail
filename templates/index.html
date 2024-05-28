@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Recommendation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e5e5e5; /* Light gray background */
+      padding: 20px;
+      margin: 0; /* Remove default browser margins */
+      overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+    }
+
+    .container {
+      background-color: #fff; /* White container */
+      padding: 30px;
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+      position: relative; /* Enable pseudo-element for subtle 3D effect */
+    }
+
+    .container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Slight outward shadow */
+      opacity: 0.9; /* Reduce opacity for a subtle effect */
+      z-index: -1; /* Place behind the container content */
+    }
+
+    h1 {
+      text-align: center;
+      color: #333; /* Dark gray heading */
+      font-size: 2em; /* Slightly larger heading */
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px; /* Softer rounded corners */
+      outline: none; /* Remove default outline */
+      width: 300px;
+    }
+
+    button {
+      background-color: #4CAF50; /* Green button */
+      color: white;
+      padding: 12px 25px; /* Slightly larger padding */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+    }
+
+    button:hover {
+      background-color: #3e8e41; /* Darker green on hover */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2; /* Light gray table header */
+    }
+
+    .ai-description {
+      font-style: italic;
+      color: #666; /* Lighter gray for description */
+      margin-top: 10px; /* Add some space above the description */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Product Recommendation</h1>
+    <form method="post">
+      <input type="text" name="scenario" placeholder="Enter a scenario (e.g., 'I need a hat')">
+      <button type="submit">Get Recommendation</button>
+    </form>
+    {% if product_details is not none %}
+      <h2>Generated Recommendation</h2>
+      <h3>Scenario: {{ scenario }}</h3>
+      <table>
+        {{ product_details|safe }}
+      </table>
+      <h2>AI Description</h2>
+      <p class="ai-description">{{ ai_description }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
